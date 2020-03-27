@@ -51,6 +51,12 @@
         </dependency>
 
 
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.13</version>
+        </dependency>
+
     </dependencies>
 
 
@@ -79,7 +85,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <mainClass>sample.Main</mainClass>
+                    <mainClass>application.Main</mainClass>
                     <killAfter>-1</killAfter>
                 </configuration>
             </plugin>
@@ -98,7 +104,7 @@
                             <transformers>
                                 <transformer
                                         implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>sample.Main</mainClass>
+                                    <mainClass>application.Main</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>
