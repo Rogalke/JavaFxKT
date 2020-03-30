@@ -2,10 +2,12 @@ package application.dao;
 
 import application.conectivity.ConnectionManager;
 import application.model.User;
+import lombok.extern.slf4j.Slf4j;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+@Slf4j
 public class UserDao {
 
     private static final String SELECT = "select";
@@ -20,7 +22,7 @@ public class UserDao {
     public User selectUserByUsername(String username) throws SQLException {
         User user = new User();
         String query = SELECT + " * " + FROM_USER + WHERE + " "+USERNAME+"="+"'"+username+"'";
-        System.out.println(query);
+        log.info(query);
         ResultSet resultSet = ConnectionManager.dbExecuteQuery(query);
         while(resultSet.next()){
             user.setUserId(resultSet.getInt(ID_USER));
@@ -29,7 +31,7 @@ public class UserDao {
             user.setFirstName(resultSet.getString(FIRSTNAME));
             user.setLastName(resultSet.getString(LASTNAME));
         }
-        System.out.println(user);
+        log.info(user.toString());
         return user;
     }
 }

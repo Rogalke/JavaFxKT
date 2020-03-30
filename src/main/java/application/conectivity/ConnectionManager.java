@@ -8,7 +8,6 @@ public class ConnectionManager {
     private static final String USERNAME = "root";
     private static final String PASSWORD = "root";
 
-
     private static Connection dbConnect(){
 
         Connection connection = null;

@@ -2,9 +2,11 @@ package application.service;
 
 import application.dao.UserDao;
 import application.model.User;
+import lombok.extern.slf4j.Slf4j;
 
 import java.sql.SQLException;
 
+@Slf4j
 public class UserService{
     private UserDao userDao;
 
@@ -13,17 +15,18 @@ public class UserService{
     }
 
     public boolean isUserValid(String username, String password){
-        User user = new User();
+        User user = null;
         boolean isUsername = false;
         boolean isPassword = false;
         try {
             user = userDao.selectUserByUsername(username);
-            System.out.println(user);
             isUsername = username.equalsIgnoreCase(user.getUsername());
-            System.out.println(isUsername);
             isPassword = password.equalsIgnoreCase(user.getPassword());
+            log.info("is Password: " + isPassword + " is Username: " + isUsername);
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("SQL error from UserService");
+        } catch (NullPointerException e){
+            log.error("Null pointer from UserService");
         }
         return (isUsername && isPassword);
     }
